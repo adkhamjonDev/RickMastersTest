@@ -13,4 +13,5 @@ Stack:
  * Hilt (for dependency injection)
  * Kotlin Coroutines
  * Flows
+ * Clean Architecture
  * Jetpack Compose
