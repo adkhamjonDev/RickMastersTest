@@ -1,6 +1,7 @@
 package com.adkhamjon.rikmasterstest.di
 
 import com.adkhamjon.rikmasterstest.data.local.entity.CameraEntity
+import com.adkhamjon.rikmasterstest.data.local.entity.DoorEntity
 import com.adkhamjon.rikmasterstest.data.remote.ApiService
 import com.adkhamjon.rikmasterstest.data.remote.ApiServiceImpl
 import dagger.Module
@@ -27,7 +28,7 @@ object DatabaseModule {
         Realm.open(
             RealmConfiguration.Builder(
                 schema = setOf(
-                    CameraEntity::class
+                    CameraEntity::class, DoorEntity::class
                 )
             )
                 .compactOnLaunch()

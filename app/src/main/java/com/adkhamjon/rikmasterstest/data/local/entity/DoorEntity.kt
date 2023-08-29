@@ -4,17 +4,15 @@ import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.Ignore
 import io.realm.kotlin.types.annotations.PrimaryKey
 
-class CameraEntity(
+class DoorEntity(
     @PrimaryKey
     var id: Int,
     var name: String,
-    var imageUrl: String,
-    var favorite: Boolean
+    var imageUrl: String? = null
 ) : RealmObject {
     constructor() : this(
         id = 0,
         name = "",
-        imageUrl = "",
-        favorite = false
+        imageUrl = null
     )
 }

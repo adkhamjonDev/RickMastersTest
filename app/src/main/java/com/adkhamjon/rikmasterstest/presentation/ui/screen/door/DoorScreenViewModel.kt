@@ -25,7 +25,7 @@ class DoorScreenViewModel @Inject constructor(
         getDoors()
     }
 
-    private fun getDoors() = viewModelScope.launch {
+    fun getDoors() = viewModelScope.launch {
         doorUseCases.getDoorUseCase().collectLatest {
             when (it) {
                 is Resource.Success -> {

@@ -27,6 +27,9 @@ import androidx.compose.material.FractionalThreshold
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material.rememberSwipeableState
 import androidx.compose.material.swipeable
 import androidx.compose.runtime.Composable
@@ -54,9 +57,11 @@ import com.adkhamjon.rikmasterstest.presentation.ui.theme.screenBackground
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.tabTextSize
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.toolBarTextColor
 import com.adkhamjon.rikmasterstest.presentation.utils.dipToPixels
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DoorScreen(
     viewModel: DoorScreenViewModel = hiltViewModel()
@@ -73,6 +78,7 @@ fun DoorScreen(
         progress = true
     }
     if (doorListState.error.isNotEmpty()) {
+        progress = false
         Toast.makeText(LocalContext.current, doorListState.error, Toast.LENGTH_SHORT).show()
     }
     if (doorListState.data != null) {
@@ -80,10 +86,22 @@ fun DoorScreen(
         doorList.clear()
         doorList.addAll(doorListState.data)
     }
+    val refreshScope = rememberCoroutineScope()
+    var refreshing by remember { mutableStateOf(false) }
+
+    fun refresh() = refreshScope.launch {
+        refreshing = true
+        delay(1500)
+        viewModel.getDoors()
+        refreshing = false
+    }
+
+    val state = rememberPullRefreshState(refreshing, ::refresh)
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(screenBackground),
+            .background(screenBackground)
+            .pullRefresh(state),
         contentAlignment = Alignment.Center
     ) {
         LazyColumn(
@@ -99,6 +117,7 @@ fun DoorScreen(
                 DoorItem(it)
             }
         }
+        PullRefreshIndicator(refreshing, state, Modifier.align(Alignment.TopCenter))
         if (progress) {
             CircularProgressIndicator(color = blue)
         }

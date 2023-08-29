@@ -25,6 +25,9 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FractionalThreshold
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material.rememberSwipeableState
 import androidx.compose.material.swipeable
 import androidx.compose.runtime.Composable
@@ -50,9 +53,12 @@ import com.adkhamjon.rikmasterstest.presentation.ui.theme.screenBackground
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.tabTextSize
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.toolBarTextColor
 import com.adkhamjon.rikmasterstest.presentation.utils.dipToPixels
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CameraScreen(
     viewModel: CameraScreenViewModel = hiltViewModel()
@@ -69,6 +75,7 @@ fun CameraScreen(
         progress = true
     }
     if (cameraListState.error.isNotEmpty()) {
+        progress = false
         Toast.makeText(LocalContext.current, cameraListState.error, Toast.LENGTH_SHORT).show()
     }
     if (cameraListState.data != null) {
@@ -76,10 +83,23 @@ fun CameraScreen(
         cameraList.clear()
         cameraList.addAll(cameraListState.data)
     }
+
+    val refreshScope = rememberCoroutineScope()
+    var refreshing by remember { mutableStateOf(false) }
+
+    fun refresh() = refreshScope.launch {
+        refreshing = true
+        delay(1500)
+        viewModel.getCameras()
+        refreshing = false
+    }
+
+    val state = rememberPullRefreshState(refreshing, ::refresh)
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(screenBackground),
+            .background(screenBackground)
+            .pullRefresh(state),
         contentAlignment = Alignment.Center
     ) {
         LazyColumn(
@@ -95,6 +115,7 @@ fun CameraScreen(
                 CameraItem(it)
             }
         }
+        PullRefreshIndicator(refreshing, state, Modifier.align(Alignment.TopCenter))
         if (progress) {
             CircularProgressIndicator(color = blue)
         }

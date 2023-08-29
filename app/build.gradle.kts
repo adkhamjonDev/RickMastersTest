@@ -85,4 +85,6 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
 
     implementation("io.realm.kotlin:library-base:1.10.0")
+
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.33.1-alpha")
 }

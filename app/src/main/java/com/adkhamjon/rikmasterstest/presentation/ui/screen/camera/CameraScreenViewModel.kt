@@ -24,11 +24,11 @@ class CameraScreenViewModel @Inject constructor(
         getCameras()
     }
 
-    private fun getCameras() = viewModelScope.launch {
+    fun getCameras() = viewModelScope.launch {
         cameraUseCases.getCamerasUseCase().collectLatest {
             when (it) {
                 is Resource.Success -> {
-                _cameraState.value = UIListState(data = it.data)
+                    _cameraState.value = UIListState(data = it.data)
                 }
 
                 is Resource.Error -> {
