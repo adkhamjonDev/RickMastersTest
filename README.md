@@ -2,9 +2,10 @@
 Test App
 
 Stack: 
- * ViewModel
- * LiveData
+ * Kotlin
+ * MVVM
+ * Realm
  * Hilt (for dependency injection)
  * Kotlin Coroutines
- * Retrofit
- * Room
+ * Flows
+ * Jetpack Compose
