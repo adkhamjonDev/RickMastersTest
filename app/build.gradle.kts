@@ -4,6 +4,8 @@ plugins {
     id(Plugins.kapt)
     id(Plugins.dagger_hilt)
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("io.realm.kotlin")
+
 }
 
 android {
@@ -69,16 +71,18 @@ dependencies {
     androidTestImplementation(Dependencies.Test.ext_junit)
     androidTestImplementation(Dependencies.Test.espresso_core)
     hilt()
-    implementation(Dependencies.Coroutine.coroutine)
+    coroutines()
     implementation(Dependencies.Gson.gson)
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
 
     implementation("io.ktor:ktor-client-android:1.5.0")
     implementation("io.ktor:ktor-client-serialization:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("io.ktor:ktor-client-logging-jvm:1.5.0")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+    implementation("io.realm.kotlin:library-base:1.10.0")
 }

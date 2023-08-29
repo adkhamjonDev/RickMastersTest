@@ -49,8 +49,10 @@ object Dependencies {
     }
 
     object Coroutine {
-        const val coroutine =
+        const val coroutine_android =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
+        const val coroutine_core =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
     }
 
     object Gson {

@@ -10,4 +10,8 @@ interface RickMasterRepository {
     suspend fun getCameras(): Flow<Resource<List<CameraModel>>>
 
     suspend fun getDoors(): Flow<Resource<List<DoorModel>>>
+
+    suspend fun saveCameras(cameraModel: CameraModel)
+
+    suspend fun saveDoors(doorModel: DoorModel)
 }

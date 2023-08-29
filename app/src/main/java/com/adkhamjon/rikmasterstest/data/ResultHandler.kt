@@ -27,7 +27,7 @@ open class ResultHandler {
             } catch (e: IOException) {
                 emit(
                     Resource.Error(
-                        "Error"
+                        "INTERNET ERROR"
                     )
                 )
                 offlineMode.invoke(this)

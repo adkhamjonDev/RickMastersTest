@@ -36,6 +36,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -92,7 +93,7 @@ fun DoorScreen(
                 horizontal = 16.dp,
                 vertical = 16.dp
             ),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(doorList) {
                 DoorItem(it)
@@ -163,14 +164,35 @@ fun DoorItem(
         ) {
             Column {
                 if (doorModel.imageUrl != null) {
-                    AsyncImage(
-                        model = doorModel.imageUrl,
-                        contentDescription = null,
-                        contentScale = ContentScale.FillBounds,
+                    Box(
                         modifier = Modifier
                             .height(207.dp)
-                            .fillMaxWidth()
-                    )
+                    ) {
+                        AsyncImage(
+                            model = doorModel.imageUrl,
+                            contentDescription = null,
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color(0x66000000)),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.play_button),
+                                contentDescription = null
+                            )
+                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.rec),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .align(Alignment.TopStart)
+                        )
+                    }
                 }
                 Row(
                     modifier = Modifier

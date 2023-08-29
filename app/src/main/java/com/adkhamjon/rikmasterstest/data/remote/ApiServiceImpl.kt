@@ -9,6 +9,7 @@ import io.ktor.client.features.RedirectResponseException
 import io.ktor.client.request.get
 import io.ktor.client.request.url
 import io.ktor.client.statement.response
+import io.ktor.utils.io.errors.IOException
 import javax.inject.Inject
 
 class ApiServiceImpl @Inject constructor(
@@ -35,7 +36,7 @@ class ApiServiceImpl @Inject constructor(
         } catch (e: RedirectResponseException) {
             Log.d("TTT", "getDoors: ${e.response.response}")
             MainResponse(emptyList(), false)
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             Log.d("TTT", "getDoors: ${e.message}")
             MainResponse(emptyList(), false)
         }

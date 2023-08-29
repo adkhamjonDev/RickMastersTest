@@ -1,9 +1,8 @@
 package com.adkhamjon.rikmasterstest.di
 
+import com.adkhamjon.rikmasterstest.data.local.entity.CameraEntity
 import com.adkhamjon.rikmasterstest.data.remote.ApiService
 import com.adkhamjon.rikmasterstest.data.remote.ApiServiceImpl
-import com.adkhamjon.rikmasterstest.data.repository.RickMasterRepositoryImpl
-import com.adkhamjon.rikmasterstest.domain.repository.RickMasterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,18 +14,23 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideRepository(
-        apiService: ApiService,
-        realm: Realm
-    ): RickMasterRepository {
-        return RickMasterRepositoryImpl(apiService, realm)
-    }
+    fun provideRealmDatabase(): Realm =
+        Realm.open(
+            RealmConfiguration.Builder(
+                schema = setOf(
+                    CameraEntity::class
+                )
+            )
+                .compactOnLaunch()
+                .build()
+        )
 }

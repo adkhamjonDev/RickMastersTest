@@ -20,3 +20,8 @@ fun DependencyHandlerScope.hilt() {
     add(KAPT, Dependencies.Hilt.hilt_compiler)
     add(IMPLEMENTATION, Dependencies.Hilt.hilt_navigation)
 }
+
+fun DependencyHandlerScope.coroutines() {
+    add(IMPLEMENTATION, Dependencies.Coroutine.coroutine_android)
+    add(IMPLEMENTATION, Dependencies.Coroutine.coroutine_core)
+}
