@@ -35,6 +35,7 @@ import com.adkhamjon.rikmasterstest.presentation.ui.theme.tabRowHeight
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.tabTextSize
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.toolBarBackgroundColor
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.toolBarTextColor
+import com.adkhamjon.rikmasterstest.presentation.utils.clickableRipple
 import kotlinx.coroutines.launch
 
 @Preview(showBackground = true)
@@ -122,16 +123,3 @@ fun CustomTabItem(
         )
     }
 }
-
-@Composable
-fun Modifier.clickableRipple(
-    onClick: () -> Unit
-) = then(
-    Modifier.clickable(
-        interactionSource = remember { MutableInteractionSource() }, // without this indication parameter gets an error
-        indication = rememberRipple(color = Color(0x1A000000)),
-    ) {
-        onClick.invoke()
-    }
-)
-

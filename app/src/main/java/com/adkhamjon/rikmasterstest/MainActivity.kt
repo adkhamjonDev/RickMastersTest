@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import com.adkhamjon.rikmasterstest.presentation.ui.screen.MainScreen
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.RikMastersTestTheme
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.screenBackground
+import com.adkhamjon.rikmasterstest.presentation.utils.StatusBarColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RikMastersTestTheme {
+                StatusBarColor()
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

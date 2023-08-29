@@ -79,4 +79,6 @@ dependencies {
     implementation("io.ktor:ktor-client-logging-jvm:1.5.0")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
 }
