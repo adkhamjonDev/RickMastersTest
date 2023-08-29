@@ -137,7 +137,7 @@ fun CameraItem(
                 state = swipeableState,
                 anchors = mapOf(
                     0f to 0,
-                    -dipToPixels(LocalContext.current, 100f) to 1,
+                    -dipToPixels(LocalContext.current, 50f) to 1,
                     dipToPixels(LocalContext.current, 0f) to 0,
                 ),
                 thresholds = { _, _ -> FractionalThreshold(0.5f) },
@@ -153,7 +153,6 @@ fun CameraItem(
             },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
-                .padding(end = 20.dp)
         ) {
             Image(painterResource(id = R.drawable.ic_star), contentDescription = null)
         }

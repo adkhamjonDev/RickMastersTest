@@ -45,4 +45,10 @@ class DoorScreenViewModel @Inject constructor(
             }
         }
     }
+
+    fun updateName(id: Int, name: String) {
+        viewModelScope.launch {
+            doorUseCases.updateDoorNameUseCase(id, name)
+        }
+    }
 }

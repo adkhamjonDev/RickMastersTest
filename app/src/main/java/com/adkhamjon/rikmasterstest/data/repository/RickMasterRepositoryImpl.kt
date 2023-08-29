@@ -1,5 +1,6 @@
 package com.adkhamjon.rikmasterstest.data.repository
 
+import android.util.Log
 import com.adkhamjon.rikmasterstest.data.common.ResultHandler
 import com.adkhamjon.rikmasterstest.data.local.entity.CameraEntity
 import com.adkhamjon.rikmasterstest.data.local.entity.DoorEntity
@@ -93,5 +94,13 @@ class RickMasterRepositoryImpl @Inject constructor(
             )
         }
     )
+
+    override suspend fun updateName(id: Int, name: String) {
+        realm.write {
+            val door: DoorEntity? =
+                this.query<DoorEntity>("id=$0", id).first().find()
+            door?.name = name
+        }
+    }
 
 }

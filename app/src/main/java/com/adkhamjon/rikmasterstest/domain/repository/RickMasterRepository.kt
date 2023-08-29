@@ -10,4 +10,6 @@ interface RickMasterRepository {
 
     suspend fun getDoors(): FLOW_RESOURCE<List<DoorModel>>
 
+    suspend fun updateName(id: Int, name: String)
+
 }

@@ -49,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.adkhamjon.rikmasterstest.R
+import com.adkhamjon.rikmasterstest.domain.model.CameraModel
 import com.adkhamjon.rikmasterstest.domain.model.DoorModel
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.blue
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.cardBackgroundColor
@@ -114,7 +115,10 @@ fun DoorScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(doorList) {
-                DoorItem(it)
+                DoorItem(it) { item ->
+                    viewModel.updateName(item.id, "ASDASDASDASDASD")
+                    viewModel.getDoors()
+                }
             }
         }
         PullRefreshIndicator(refreshing, state, Modifier.align(Alignment.TopCenter))
@@ -127,7 +131,8 @@ fun DoorScreen(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DoorItem(
-    doorModel: DoorModel
+    doorModel: DoorModel,
+    onEditClick: (data: DoorModel) -> Unit
 ) {
     val swipeableState = rememberSwipeableState(0)
     val scope = rememberCoroutineScope()
@@ -156,6 +161,9 @@ fun DoorItem(
                     scope.launch {
                         swipeableState.animateTo(0, tween(600, 0))
                     }
+                    onEditClick.invoke(
+                        doorModel
+                    )
                 }
             ) {
                 Image(painterResource(id = R.drawable.edit), contentDescription = null)
