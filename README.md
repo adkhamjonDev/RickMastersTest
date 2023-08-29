@@ -2,10 +2,10 @@
 Test App
 
 Stack: 
-Kotlin
-MVVM
-Realm
-Ktor
-Coroutines
-LiveData
-Jetpack Compose + Material Design
+# Kotlin
+# MVVM
+# Realm
+# Ktor
+# Coroutines
+# Flows
+# Jetpack Compose + Material Design
