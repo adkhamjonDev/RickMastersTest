@@ -75,6 +75,9 @@ fun DoorScreen(
     var progress by remember {
         mutableStateOf(true)
     }
+    var updateDialog by remember {
+        mutableStateOf(false)
+    }
     if (doorListState.isLoading) {
         progress = true
     }
@@ -98,6 +101,20 @@ fun DoorScreen(
     }
 
     val state = rememberPullRefreshState(refreshing, ::refresh)
+
+    if (updateDialog) {
+        UpdateNameDialog(
+            text = doorList[0].name,
+            onDismissRequest = {
+                updateDialog = false
+            },
+            onUpdateClick = {
+                viewModel.updateName(doorList[0].id, it)
+                viewModel.getDoors()
+                updateDialog = false
+            }
+        )
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,8 +133,9 @@ fun DoorScreen(
         ) {
             items(doorList) {
                 DoorItem(it) { item ->
-                    viewModel.updateName(item.id, "ASDASDASDASDASD")
-                    viewModel.getDoors()
+                    updateDialog = true
+//                    viewModel.updateName(item.id, "ASDASDASDASDASD")
+//                    viewModel.getDoors()
                 }
             }
         }

@@ -8,12 +8,6 @@ import Params.TEST_IMPLEMENTATION
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-
-fun DependencyHandlerScope.chuckInterceptor() {
-    add(DEBUG_IMPLEMENTATION, Dependencies.ChuckInterceptor.chuck)
-    add(RELEASE_IMPLEMENTATION, Dependencies.ChuckInterceptor.chuck_no_op)
-}
-
 fun DependencyHandlerScope.hilt() {
     add(IMPLEMENTATION, Dependencies.Hilt.hilt_android)
     add(KAPT, Dependencies.Hilt.hilt_android_compiler)
@@ -24,4 +18,10 @@ fun DependencyHandlerScope.hilt() {
 fun DependencyHandlerScope.coroutines() {
     add(IMPLEMENTATION, Dependencies.Coroutine.coroutine_android)
     add(IMPLEMENTATION, Dependencies.Coroutine.coroutine_core)
+}
+
+fun DependencyHandlerScope.ktor(){
+    add(IMPLEMENTATION, Dependencies.Ktor.ktor_android)
+    add(IMPLEMENTATION, Dependencies.Ktor.ktor_serialization)
+    add(IMPLEMENTATION, Dependencies.Ktor.ktor_logging)
 }

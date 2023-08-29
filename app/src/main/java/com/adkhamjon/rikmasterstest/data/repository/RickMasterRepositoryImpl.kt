@@ -43,7 +43,7 @@ class RickMasterRepositoryImpl @Inject constructor(
                 }
                 flow.emit(Resource.Success(list))
             } catch (e: Exception) {
-                flow.emit(Resource.Error("try catch"))
+                flow.emit(Resource.Error(e.message.toString()))
             }
         },
         { flow ->
@@ -81,7 +81,7 @@ class RickMasterRepositoryImpl @Inject constructor(
                 }
                 flow.emit(Resource.Success(list))
             } catch (e: Exception) {
-                flow.emit(Resource.Error("try catch"))
+                flow.emit(Resource.Error(e.message.toString()))
             }
         }, { flow ->
             val doors: RealmResults<DoorEntity> = realm.query<DoorEntity>().find()

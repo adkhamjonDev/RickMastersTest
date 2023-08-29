@@ -42,21 +42,11 @@ object Dependencies {
             "androidx.compose.ui:ui-test-manifest:${Versions.compose_version_test}"
     }
 
-    object ChuckInterceptor {
-        const val chuck = "com.github.chuckerteam.chucker:library:${Versions.chuck_version}"
-        const val chuck_no_op =
-            "com.github.chuckerteam.chucker:library-no-op:${Versions.chuck_version}}"
-    }
-
     object Coroutine {
         const val coroutine_android =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
         const val coroutine_core =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
-    }
-
-    object Gson {
-        const val gson = "com.google.code.gson:gson:${Versions.gson}"
     }
 
     object Hilt {
@@ -67,5 +57,11 @@ object Dependencies {
         const val hilt_navigation =
             "androidx.hilt:hilt-navigation-compose:${Versions.hilt_compiler}"
 
+    }
+
+    object Ktor {
+        const val ktor_android = "io.ktor:ktor-client-android:${Versions.ktor_version}"
+        const val ktor_serialization = "io.ktor:ktor-client-serialization:${Versions.ktor_version}"
+        const val ktor_logging = "io.ktor:ktor-client-logging-jvm:${Versions.ktor_version}"
     }
 }
