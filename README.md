@@ -1,7 +1,7 @@
 # RikMastersTest
 Test App
 
-<img align="right" src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/assets/capture.PNG" width="300">
+<img align="right" src="https://github.com/adkhamjonDev/RikMastersTest/blob/master/assets/screen_record.mp4" width="300">
 
 Stack: 
  * Kotlin
