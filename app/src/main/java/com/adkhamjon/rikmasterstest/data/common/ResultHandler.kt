@@ -1,12 +1,10 @@
-package com.adkhamjon.rikmasterstest.data
+package com.adkhamjon.rikmasterstest.data.common
 
-import android.util.Log
 import com.adkhamjon.rikmasterstest.data.remote.dto.MainResponse
 import com.adkhamjon.rikmasterstest.domain.Resource
 import io.ktor.client.features.ClientRequestException
 import io.ktor.client.features.RedirectResponseException
 import io.ktor.client.features.ServerResponseException
-import io.ktor.client.statement.response
 import io.ktor.utils.io.errors.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector

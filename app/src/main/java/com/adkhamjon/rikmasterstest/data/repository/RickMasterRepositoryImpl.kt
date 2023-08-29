@@ -1,13 +1,12 @@
 package com.adkhamjon.rikmasterstest.data.repository
 
-import android.util.Log
-import com.adkhamjon.rikmasterstest.data.ResultHandler
+import com.adkhamjon.rikmasterstest.data.common.ResultHandler
 import com.adkhamjon.rikmasterstest.data.local.entity.CameraEntity
 import com.adkhamjon.rikmasterstest.data.local.entity.DoorEntity
 import com.adkhamjon.rikmasterstest.data.mapper.toEntity
 import com.adkhamjon.rikmasterstest.data.mapper.toModel
 import com.adkhamjon.rikmasterstest.data.remote.ApiService
-import com.adkhamjon.rikmasterstest.data.remote.FLOW_RESOURCE
+import com.adkhamjon.rikmasterstest.data.common.FLOW_RESOURCE
 import com.adkhamjon.rikmasterstest.domain.Resource
 import com.adkhamjon.rikmasterstest.domain.model.CameraModel
 import com.adkhamjon.rikmasterstest.domain.model.DoorModel
@@ -15,9 +14,6 @@ import com.adkhamjon.rikmasterstest.domain.repository.RickMasterRepository
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.query.RealmResults
-import io.realm.kotlin.types.RealmList
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RickMasterRepositoryImpl @Inject constructor(

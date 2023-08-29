@@ -1,4 +1,4 @@
-package com.adkhamjon.rikmasterstest.data.remote
+package com.adkhamjon.rikmasterstest.data.common
 
 import com.adkhamjon.rikmasterstest.domain.Resource
 import kotlinx.coroutines.flow.Flow

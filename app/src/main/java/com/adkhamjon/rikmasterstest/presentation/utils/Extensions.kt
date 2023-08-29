@@ -1,6 +1,7 @@
 package com.adkhamjon.rikmasterstest.presentation.utils
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ripple.rememberRipple
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.adkhamjon.rikmasterstest.App
 import com.adkhamjon.rikmasterstest.presentation.ui.theme.toolBarBackgroundColor
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -34,3 +36,5 @@ fun StatusBarColor() {
 fun dipToPixels(context: Context, dipValue: Float): Float {
     return dipValue * context.resources.displayMetrics.density
 }
+
+fun getString(@StringRes int: Int) = App.resources.getString(int)

@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.*
+
 plugins {
     id(Plugins.android_application)
     id(Plugins.jetbrains_kotlin_android)
@@ -26,6 +29,12 @@ android {
         vectorDrawables {
             useSupportLibrary = AppConfig.useSupportLibrary
         }
+
+        val secureProps = Properties()
+        if (file("../${AppConfig.secure_properties}").exists()) {
+            secureProps.load(FileInputStream(AppConfig.secure_properties))
+        }
+        resValue("string", "base_url", (secureProps.getProperty("BASE_URL") ?: ""))
     }
 
     buildTypes {
